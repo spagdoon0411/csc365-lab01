@@ -5,22 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f977574-1d9d-4c1d-9880-58c77ad64648" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/src/Bank.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CreditCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CreditCardCollection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CustomerCollection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Ownership.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OwnershipCollection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Payment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PaymentCollection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Transaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TransactionCollection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Vendor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/VendorCollection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bank.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Thing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TransactionCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TransactionCollection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +57,8 @@
       <workItem from="1690824486200" duration="8260000" />
       <workItem from="1690999325096" duration="15369000" />
       <workItem from="1691428136825" duration="12570000" />
+      <workItem from="1691559562733" duration="2558000" />
+      <workItem from="1691600723809" duration="3000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1690931528560</created>
@@ -95,7 +85,26 @@
           <line>8</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Bank.java</url>
+          <line>193</line>
+          <properties class="Bank" method="printTransactions">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.util.TreeMap$Entry" memberName="key" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="transactions.cardLookup" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

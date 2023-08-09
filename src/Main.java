@@ -1,3 +1,4 @@
+import java.util.Calendar;
 import java.util.Date;
 
 public class Main {
@@ -61,20 +62,22 @@ public class Main {
         b.printAllCardsSsn("123-12-1234");
 
         System.out.println("-> Printing transactions in a date range:");
+
+        Date date0 = new Date(2014, Calendar.FEBRUARY, 11);
         b.newVendor("Target", "456 E. Highland Blvd."); /* Id 2 */
         b.newVendor("Walmart", "459 E. Highland Blvd."); /* Id 3 */
-        b.newTransaction(1234568, 2, 2, -30);
-        b.newTransaction(1234568, 1, 3, -23);
-        Date date1 = new Date();
-        b.newTransaction(1234568, 1, 1, -683);
-        b.newTransaction(1234568, 2, 2, -92);
-        b.newTransaction(1234568, 1, 3, -2);
-        b.newTransaction(1234568, 2, 1, -4);
-        Date date2 = new Date();
-        b.newTransaction(1234568, 2, 2, -12);
-        b.newTransaction(1234568, 1, 2, -38);
-        Date date3 = new Date();
-        b.newTransaction(1234568, 1, 3, -97);
+        b.newTransactionOn(date0, 1234568, 2, 2, -30);
+        b.newTransactionOn(date0,1234568, 1, 3, -23);
+        Date date1 = new Date(2015, Calendar.FEBRUARY, 11);
+        b.newTransactionOn(date1,1234568, 1, 1, -683);
+        b.newTransactionOn(date1,1234568, 2, 2, -92);
+        b.newTransactionOn(date1,1234568, 1, 3, -2);
+        b.newTransactionOn(date1,1234568, 2, 1, -4);
+        Date date2 = new Date(2016, Calendar.FEBRUARY, 11);
+        b.newTransactionOn(date2,1234568, 2, 2, -12);
+        b.newTransactionOn(date2,1234568, 1, 2, -38);
+        Date date3 = new Date(2017, Calendar.FEBRUARY, 11);
+        b.newTransactionOn(date3,1234568, 1, 3, -97);
 
         b.printTransactions(1234568, date1, date2);
 

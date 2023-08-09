@@ -17,9 +17,20 @@ public class TransactionCollection {
         {
             CreditCard card = transaction.getCreditCard();
 
-            Transaction transaction =
+            TreeMap<Date, List<Transaction>> dateTree = cardLookup.get(card);
 
-            cardLookup.get(card).get(transaction.getDate()).add(transaction);
+            List<Transaction> dateList = dateTree.get(transaction.getDate());
+
+            if(dateList == null)
+            {
+                ArrayList<Transaction> newList = new ArrayList<>();
+                newList.add(transaction);
+                dateTree.put(new Date(), newList);
+            }
+            else
+            {
+                dateList.add(transaction);
+            }
         }
         /* Case 2: card doesn't exist */
         else

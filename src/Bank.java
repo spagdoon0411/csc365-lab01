@@ -90,6 +90,14 @@ public class Bank {
                                int customerID,
                                int vendorId,
                                double deltaCustomerBalance) throws RuntimeException {
+        newTransactionOn(new Date(), cardNumber, customerID, vendorId, deltaCustomerBalance);
+    }
+
+    public void newTransactionOn(Date date,
+                               long cardNumber,
+                               int customerID,
+                               int vendorId,
+                               double deltaCustomerBalance) throws RuntimeException {
         Vendor vendor = vendors.idLookup.get(vendorId);
         CreditCard card = cards.numLookup.get(cardNumber);
         Customer customer = customers.idLookup.get(customerID);
@@ -109,7 +117,7 @@ public class Bank {
                 throw new RuntimeException("Customer doesn't actively own this card");
 
             Transaction t = new Transaction(
-                    new Date(),
+                    date,
                     customer,
                     card,
                     vendor,
@@ -184,10 +192,11 @@ public class Bank {
     }
 
     public void printTransactions(long num, Date from, Date to) {
-        transactions.cardLookup.get(cards.numLookup.get(num))
+        CreditCard card = cards.numLookup.get(num);
+        transactions.cardLookup.get(card)
                 .subMap(from, to)
                 .values()
-                .forEach(System.out::println);
+                .forEach(c -> c.forEach(System.out::println));
     }
 
 }
