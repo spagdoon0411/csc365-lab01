@@ -62,4 +62,26 @@ public class Customer {
                 + "Phone: " + this.phone + " \n";
     }
 
+    public String toCSV()
+    {
+        CSVTuple tuple = new CSVTuple();
+
+        tuple.append(String.valueOf(this.getId()));
+        tuple.append(this.getSsn());
+        tuple.append(this.getName());
+        tuple.append(this.getAddress());
+        tuple.append(this.getPhone());
+        tuple.close();
+
+        return tuple.toString();
+    }
+
+    private String getAddress() {
+        return this.address;
+    }
+
+    private String getPhone() {
+        return this.phone;
+    }
+
 }
