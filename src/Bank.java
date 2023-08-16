@@ -1,8 +1,11 @@
+import java.math.BigInteger;
 import java.util.Date;
 
 public class Bank {
+
+    static BigInteger one = new BigInteger("1");
     CreditCardCollection cards = new CreditCardCollection();
-    static long cardNumber = 1234567;
+    static BigInteger cardNumber = new BigInteger("1234123412341234");
     CustomerCollection customers = new CustomerCollection();
     static int customerID = 0;
     OwnershipCollection ownerships = new OwnershipCollection();
@@ -27,7 +30,9 @@ public class Bank {
     public void newCard(CreditCard.type type, int limit, int customerId) throws RuntimeException {
         Customer customer = customers.idLookup.get(customerId);
 
-        CreditCard newCard = new CreditCard(++cardNumber, type, limit, 0);
+        cardNumber = cardNumber.add(one);
+
+        CreditCard newCard = new CreditCard(cardNumber, type, limit, 0);
 
         if (customer != null) {
             cards.add(newCard);

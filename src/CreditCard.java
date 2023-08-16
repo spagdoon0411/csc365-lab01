@@ -1,4 +1,5 @@
 import java.math.BigInteger;
+import java.util.Random;
 
 public class CreditCard {
     private BigInteger num;
@@ -6,7 +7,9 @@ public class CreditCard {
         Visa,
         MasterCard,
         AmericanExpress,
-        Discover
+        Discover;
+
+        public static type[] byIndex = new type[] { Visa, MasterCard, AmericanExpress, Discover };
     }
 
     CreditCard.type cardType;
@@ -16,6 +19,8 @@ public class CreditCard {
     private double balance;
 
     private boolean active;
+
+    private static BigInteger randomNum = new BigInteger("1234123412341234");
 
     public CreditCard(BigInteger num, CreditCard.type type, int limit, double balance)
     {
@@ -54,9 +59,33 @@ public class CreditCard {
                 + "Active: " + (this.active ? "Active" : "Inactive");
     }
 
+    public CreditCard() {
+        this.num = CreditCard.randomNum;
+        this.cardType = type.byIndex[(int)(Math.random() * 5)];
+        this.limit = (int)(Math.random() * 1001);
+        this.balance = (int)(Math.random() * limit * 100) / 100.0;
+        this.active = true;
+
+        CreditCard.randomNum = CreditCard.randomNum.add(RandomData.one);
+    }
+
     public String toCSV()
     {
-        CSVTuple newTuple = new CSVTuple();
+        CSVTuple tuple = new CSVTuple();
+        tuple.append(this.getNum().toString());
+        tuple.append(this.getType());
+        tuple.append(String.valueOf(this.getLimit()));
+        tuple.append(String.valueOf(this.balance));
+        tuple.append(this.isActive() ? "1" : "0");
+        tuple.close();
+        return tuple.toString();
+    }
 
+    private int getLimit() {
+        return this.limit;
+    }
+
+    private String getType() {
+        return String.valueOf(this.cardType);
     }
 }
