@@ -2,22 +2,26 @@ import java.math.BigInteger;
 import java.util.Date;
 
 public class Bank {
-
     static BigInteger one = new BigInteger("1");
-    CreditCardCollection cards = new CreditCardCollection();
+    CreditCardCollection cards;
     static BigInteger cardNumber = new BigInteger("1234123412341234");
-    CustomerCollection customers = new CustomerCollection();
+    CustomerCollection customers;
     static int customerID = 0;
-    OwnershipCollection ownerships = new OwnershipCollection();
-    TransactionCollection transactions = new TransactionCollection();
-    VendorCollection vendors = new VendorCollection();
+    OwnershipCollection ownerships;
+    TransactionCollection transactions;
+    VendorCollection vendors;
     static int vendorId = 0;
 
-    PaymentCollection payments = new PaymentCollection();
+    PaymentCollection payments;
     static int paymentId = 0;
 
     public Bank() {
-
+        cards = new CreditCardCollection();
+        customers = new CustomerCollection();
+        ownerships = new OwnershipCollection();
+        transactions = new TransactionCollection();
+        vendors = new VendorCollection();
+        payments = new PaymentCollection();
     }
 
     public void newCustomer(String ssn,
@@ -75,7 +79,7 @@ public class Bank {
 
     }
 
-    public void activateCard(long cardNumber) throws RuntimeException {
+    public void activateCard(String cardNumber) throws RuntimeException {
         CreditCard card = cards.numLookup.get(cardNumber);
 
         if (card != null) {
@@ -91,7 +95,7 @@ public class Bank {
         vendors.add(vendor);
     }
 
-    public void newTransaction(long cardNumber,
+    public void newTransaction(String cardNumber,
                                int customerID,
                                int vendorId,
                                double deltaCustomerBalance) throws RuntimeException {
@@ -99,7 +103,7 @@ public class Bank {
     }
 
     public void newTransactionOn(Date date,
-                               long cardNumber,
+                               String cardNumber,
                                int customerID,
                                int vendorId,
                                double deltaCustomerBalance) throws RuntimeException {
@@ -132,7 +136,7 @@ public class Bank {
         }
     }
 
-    public void newPayment(long cardNumber, int customerID, double deltaBalance) throws RuntimeException {
+    public void newPayment(String cardNumber, int customerID, double deltaBalance) throws RuntimeException {
         CreditCard card = cards.numLookup.get(cardNumber);
         Customer customer = customers.idLookup.get(customerID);
 

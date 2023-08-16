@@ -63,7 +63,7 @@ public class CreditCard {
         this.num = CreditCard.randomNum;
         this.cardType = type.byIndex[(int)(Math.random() * 5)];
         this.limit = (int)(Math.random() * 1001);
-        this.balance = (int)(Math.random() * limit * 100) / 100.0;
+        this.balance = - (int)(Math.random() * limit * 100) / 100.0;
         this.active = true;
 
         CreditCard.randomNum = CreditCard.randomNum.add(RandomData.one);
@@ -81,11 +81,15 @@ public class CreditCard {
         return tuple.toString();
     }
 
-    private int getLimit() {
+    public int getLimit() {
         return this.limit;
     }
 
     private String getType() {
         return String.valueOf(this.cardType);
+    }
+
+    public double getBalance() {
+        return this.balance;
     }
 }
