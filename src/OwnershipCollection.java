@@ -4,6 +4,8 @@ public class OwnershipCollection {
     public Map<Customer, List<Ownership>> cardsOwned;
     public Map<CreditCard, List<Ownership>> owners;
 
+    public Set<Ownership> ownerships;
+
     OwnershipCollection()
     {
         cardsOwned = new HashMap<>();
@@ -46,7 +48,6 @@ public class OwnershipCollection {
         /* It's entirely likely that there are some unowned cards here. That's okay! */
     }
 
-
     public void add(Ownership ownership)
     {
         if(cardsOwned.containsKey(ownership.getCustomer()))
@@ -66,5 +67,18 @@ public class OwnershipCollection {
         {
             owners.put(ownership.getCard(), new ArrayList<>(Collections.singleton(ownership)));
         }
+
+        ownerships.add(ownership);
+    }
+
+    public String toCSV()
+    {
+        StringBuilder csvDump = new StringBuilder();
+        for(Ownership ownership : ownerships)
+        {
+            csvDump.append(ownership.toCSV()).append("\n");
+        }
+
+        return csvDump.toString();
     }
 }

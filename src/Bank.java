@@ -116,7 +116,7 @@ public class Bank {
         } else {
             boolean activelyOwnsCard = ownerships.owners.get(card)
                     .stream()
-                    .anyMatch(o -> o.customer == customer && o.updated);
+                    .anyMatch(o -> o.getCustomer() == customer && o.getUpdated());
 
             if (!activelyOwnsCard)
                 throw new RuntimeException("Customer doesn't actively own this card");
@@ -145,7 +145,7 @@ public class Bank {
         } else {
             boolean activelyOwnsCard = ownerships.owners.get(card)
                     .stream()
-                    .anyMatch(o -> o.customer == customer && o.updated);
+                    .anyMatch(o -> o.getCustomer() == customer && o.getUpdated());
 
             if (!activelyOwnsCard)
                 throw new RuntimeException("Customer doesn't actively own this card");
@@ -199,7 +199,7 @@ public class Bank {
     public void printTransactions(long num, Date from, Date to) {
         CreditCard card = cards.numLookup.get(num);
         transactions.cardLookup.get(card)
-                .subMap(from, to)
+                .subMap(from.getTime(), to.getTime())
                 .values()
                 .forEach(c -> c.forEach(System.out::println));
     }

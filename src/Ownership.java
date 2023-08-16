@@ -3,6 +3,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Ownership {
+
     private CreditCard card;
     private Customer customer;
 
@@ -30,5 +31,15 @@ public class Ownership {
     }
 
     public Customer getCustomer() { return this.customer; }
+
+    public String toCSV()
+    {
+        CSVTuple tuple = new CSVTuple();
+        tuple.append(String.valueOf(customer.getId()));
+        tuple.append(card.getNum().toString());
+        tuple.close();
+
+        return tuple.toString();
+    }
 
 }
