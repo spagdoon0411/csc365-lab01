@@ -12,7 +12,7 @@ public class OwnershipCollection {
         owners = new HashMap<>();
     }
 
-    public OwnershipCollection(Set<Customer> customers, Set<CreditCard> cards, int ownersMax, int cardsMin, int cardsMax) {
+    public OwnershipCollection(Collection<Customer> customers, Collection<CreditCard> cards, int ownersMax, int cardsMin, int cardsMax) {
         this();
 
         HashMap<CreditCard, Integer> numOwners = new HashMap<>();

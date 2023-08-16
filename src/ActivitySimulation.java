@@ -3,18 +3,44 @@ import java.util.stream.Collectors;
 
 public class ActivitySimulation extends Bank {
 
-    public ActivitySimulation()
+    /* Creates a simulation environment with a given number of customers,
+    * cards, and vendors. Each card has at most ownersMax owners and each
+    * customer has between cardsMin and cardsMax cards. */
+    public ActivitySimulation(int nCustomers, int nCards, int nVendors,
+                              int ownersMax, int cardsMin, int cardsMax)
     {
-        /* Initialize collections */
-        super();
+        customers = new CustomerCollection();
+        cards = new CreditCardCollection();
+        vendors = new VendorCollection();
 
-        /* TODO: Populate collections with random data */
+        for(int i = 0; i < nCustomers; i++)
+        {
+            customers.add(new Customer());
+        }
 
+        for(int i = 0; i < nCards; i++)
+        {
+            cards.add(new CreditCard());
+        }
 
+        for(int i = 0; i < nVendors; i++)
+        {
+            vendors.add(new Vendor());
+        }
+
+        ownerships = new OwnershipCollection(customers.idLookup.values(),
+                cards.numLookup.values(),
+                ownersMax,
+                cardsMin,
+                cardsMax
+        );
+
+        transactions = new TransactionCollection();
+        payments = new PaymentCollection();
     }
 
-    /* Creates the same number of transactions and payments. */
-    public void SimulateOn(int iterations, int numPayments)
+    /* Runs a simulation, creating 'iterations' transactions and payments. */
+    public void SimulateOn(int iterations)
     {
         ArrayList<Vendor> vendorList = new ArrayList<>(vendors.idLookup.values());
         ArrayList<CreditCard> cardList = new ArrayList<>(cards.numLookup.values());
