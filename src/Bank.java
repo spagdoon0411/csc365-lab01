@@ -47,7 +47,7 @@ public class Bank {
         ownerships.add(new Ownership(customer, newCard));
     }
 
-    public void assignCard(int customerId, long cardNumber)
+    public void assignCard(int customerId, String cardNumber)
     {
         Customer customer = customers.idLookup.get(customerId);
 
@@ -67,7 +67,7 @@ public class Bank {
         }
     }
 
-    public void cancelCard(long cardNum) throws RuntimeException {
+    public void cancelCard(String cardNum) throws RuntimeException {
         CreditCard card = cards.numLookup.get(cardNum);
 
         if (card != null) {
@@ -175,7 +175,7 @@ public class Bank {
         System.out.println(findCustomerSsn(ssn));
     }
 
-    public void printCardByNum(long num)
+    public void printCardByNum(String num)
     {
         CreditCard card = this.cards.numLookup.get(num);
         System.out.println(card.toString());
@@ -200,7 +200,7 @@ public class Bank {
                 .forEach(ownership -> System.out.println(ownership.getCard().toString() + "\n"));
     }
 
-    public void printTransactions(long num, Date from, Date to) {
+    public void printTransactions(String num, Date from, Date to) {
         CreditCard card = cards.numLookup.get(num);
         transactions.cardLookup.get(card)
                 .subMap(from.getTime(), to.getTime())
