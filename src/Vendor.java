@@ -40,5 +40,4 @@ public class Vendor {
         return this.name;
     }
 
-
 }

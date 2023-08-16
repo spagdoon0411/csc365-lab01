@@ -10,6 +10,43 @@ public class OwnershipCollection {
         owners = new HashMap<>();
     }
 
+    public OwnershipCollection(Set<Customer> customers, Set<CreditCard> cards, int ownersMax, int cardsMin, int cardsMax) {
+        this();
+
+        HashMap<CreditCard, Integer> numOwners = new HashMap<>();
+
+        ArrayList<CreditCard> cardList = new ArrayList<>(cards);
+
+        for (CreditCard card : cards) {
+            numOwners.put(card, 0);
+        }
+
+        for (Customer customer : customers) {
+
+            /* Randomly decide to pull between 1 and 3 cards from the card set */
+            int cardsToPull = new Random().nextInt(cardsMin, cardsMax);
+
+            /* Pull that many cards from the card set */
+            for(int i = 0; i < cardsToPull; i++) {
+                /* Pull a random card */
+                CreditCard cardAssignment = cardList.get(new Random().nextInt(customers.size()));
+
+                /* Add it to the ownership collection */
+                this.add(new Ownership(customer, cardAssignment));
+
+                /* Increment its number of owners and remove it from the list of available cards
+                if it exceeds the maximum. */
+                int assignmentOwnerCount = numOwners.get(cardAssignment);
+                numOwners.put(cardAssignment, assignmentOwnerCount + 1);
+                if(assignmentOwnerCount == ownersMax - 1)
+                    cardList.remove(cardAssignment);
+            }
+        }
+
+        /* It's entirely likely that there are some unowned cards here. That's okay! */
+    }
+
+
     public void add(Ownership ownership)
     {
         if(cardsOwned.containsKey(ownership.getCustomer()))
