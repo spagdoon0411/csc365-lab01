@@ -1,11 +1,11 @@
 import java.util.Date;
 
 public class Payment {
-    int id;
-    CreditCard creditCard;
-    double deltaBalance;
+    private int id;
+    private CreditCard creditCard;
+    private double deltaBalance;
 
-    Date date;
+    private Date date;
 
     public Payment(int id, CreditCard creditCard, double deltaBalance, Date date)
     {

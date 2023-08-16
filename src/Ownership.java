@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Ownership {
-    CreditCard card;
-    Customer customer;
+    private CreditCard card;
+    private Customer customer;
 
-    boolean updated;
+    private boolean updated;
 
     public Ownership(Customer customer, CreditCard card)
     {

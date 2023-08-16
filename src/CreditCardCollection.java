@@ -1,9 +1,11 @@
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CreditCardCollection {
 
-    Map<Long, CreditCard> numLookup;
+    Map<String, CreditCard> numLookup;
 
     /**
      * Creates a new, empty CreditCardCollection
@@ -19,7 +21,7 @@ public class CreditCardCollection {
      */
     public void add(CreditCard c)
     {
-        this.numLookup.put(c.getNum(), c);
+        this.numLookup.put(c.getNum().toString(), c);
     }
 
 }

@@ -3,7 +3,7 @@ import com.sun.source.tree.Tree;
 import java.util.*;
 
 public class TransactionCollection {
-    Map<CreditCard, TreeMap<Date, List<Transaction>>> cardLookup;
+    Map<CreditCard, TreeMap<Long, List<Transaction>>> cardLookup;
 
     public TransactionCollection()
     {
@@ -17,15 +17,15 @@ public class TransactionCollection {
         {
             CreditCard card = transaction.getCreditCard();
 
-            TreeMap<Date, List<Transaction>> dateTree = cardLookup.get(card);
+            TreeMap<Long, List<Transaction>> dateTree = cardLookup.get(card);
 
-            List<Transaction> dateList = dateTree.get(transaction.getDate());
+            List<Transaction> dateList = dateTree.get(transaction.getDate().getTime());
 
             if(dateList == null)
             {
                 ArrayList<Transaction> newList = new ArrayList<>();
                 newList.add(transaction);
-                dateTree.put(new Date(), newList);
+                dateTree.put(transaction.getDate().getTime(), newList);
             }
             else
             {
@@ -35,10 +35,10 @@ public class TransactionCollection {
         /* Case 2: card doesn't exist */
         else
         {
-            TreeMap<Date, List<Transaction>> newMap = new TreeMap<>();
+            TreeMap<Long, List<Transaction>> newMap = new TreeMap<>();
             ArrayList<Transaction> newList = new ArrayList<>();
             newList.add(transaction);
-            newMap.put(transaction.getDate(), newList);
+            newMap.put(transaction.getDate().getTime(), newList);
             cardLookup.put(transaction.getCreditCard(), newMap);
         }
     }

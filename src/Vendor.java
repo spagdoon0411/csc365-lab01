@@ -2,9 +2,9 @@
 public class Vendor {
     // id, name, location of main office.
 
-    int id;
-    String name;
-    String address;
+    private int id;
+    private String name;
+    private String address;
 
     public Vendor(int id, String name, String address)
     {

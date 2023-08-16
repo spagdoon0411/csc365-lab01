@@ -1,5 +1,7 @@
+import java.math.BigInteger;
+
 public class CreditCard {
-    long num;
+    private BigInteger num;
     public enum type {
         Visa,
         MasterCard,
@@ -9,22 +11,22 @@ public class CreditCard {
 
     CreditCard.type cardType;
 
-    int limit;
+    private int limit;
 
-    double balance;
+    private double balance;
 
-    boolean active;
+    private boolean active;
 
-    public CreditCard(long num, CreditCard.type type, int limit, double balance)
+    public CreditCard(BigInteger num, CreditCard.type type, int limit, double balance)
     {
         this.num = num;
         this.cardType = type;
         this.limit = limit;
         this.balance = balance;
-        this.active = false;
+        this.active = true;
     }
 
-    public long getNum() {
+    public BigInteger getNum() {
         return num;
     }
 
@@ -50,5 +52,11 @@ public class CreditCard {
                 + "Limit: " + this.limit + " \n"
                 + "Balance: " + this.balance + " \n"
                 + "Active: " + (this.active ? "Active" : "Inactive");
+    }
+
+    public String toCSV()
+    {
+        CSVTuple newTuple = new CSVTuple();
+
     }
 }

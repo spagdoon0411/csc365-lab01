@@ -2,13 +2,13 @@ import java.util.Date;
 
 public class Transaction {
     // date, customer id, cc number, and vender id.
-    Date date;
-    CreditCard creditCard;
+    private Date date;
+    private CreditCard creditCard;
 
-    Customer customer;
+    private Customer customer;
 
-    Vendor vendor;
-    double deltaCustomerBalance;
+    private Vendor vendor;
+    private double deltaCustomerBalance;
 
     public Transaction(Date date,
                        Customer customer,

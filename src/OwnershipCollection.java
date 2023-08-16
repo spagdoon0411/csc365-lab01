@@ -12,22 +12,22 @@ public class OwnershipCollection {
 
     public void add(Ownership ownership)
     {
-        if(cardsOwned.containsKey(ownership.customer))
+        if(cardsOwned.containsKey(ownership.getCustomer()))
         {
-            cardsOwned.get(ownership.customer).add(ownership);
+            cardsOwned.get(ownership.getCustomer()).add(ownership);
         }
         else
         {
-            cardsOwned.put(ownership.customer, new ArrayList<>(Collections.singleton(ownership)));
+            cardsOwned.put(ownership.getCustomer(), new ArrayList<>(Collections.singleton(ownership)));
         }
 
-        if(owners.containsKey(ownership.card))
+        if(owners.containsKey(ownership.getCard()))
         {
-            owners.get(ownership.card).add(ownership);
+            owners.get(ownership.getCard()).add(ownership);
         }
         else
         {
-            owners.put(ownership.card, new ArrayList<>(Collections.singleton(ownership)));
+            owners.put(ownership.getCard(), new ArrayList<>(Collections.singleton(ownership)));
         }
     }
 }
