@@ -1,6 +1,7 @@
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CreditCardCollection {
@@ -24,4 +25,15 @@ public class CreditCardCollection {
         this.numLookup.put(c.getNum().toString(), c);
     }
 
+    public String toCSV()
+    {
+        StringBuilder csvDump = new StringBuilder();
+        List<CreditCard> cards = numLookup.values().stream().toList();
+        for(CreditCard c : cards)
+        {
+            csvDump.append(c.toCSV()).append("\n");
+        }
+
+        return csvDump.toString();
+    }
 }
