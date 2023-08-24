@@ -10,6 +10,7 @@ public class OwnershipCollection {
     {
         cardsOwned = new HashMap<>();
         owners = new HashMap<>();
+        ownerships = new HashSet<>();
     }
 
     public OwnershipCollection(Collection<Customer> customers, Collection<CreditCard> cards, int ownersMax, int cardsMin, int cardsMax) {
@@ -30,8 +31,11 @@ public class OwnershipCollection {
 
             /* Pull that many cards from the card set */
             for(int i = 0; i < cardsToPull; i++) {
+                if(cardList.size() == 0)
+                    break;
+
                 /* Pull a random card */
-                CreditCard cardAssignment = cardList.get(new Random().nextInt(customers.size()));
+                CreditCard cardAssignment = cardList.get(new Random().nextInt(cardList.size() - 1));
 
                 /* Add it to the ownership collection */
                 this.add(new Ownership(customer, cardAssignment));

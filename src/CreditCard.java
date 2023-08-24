@@ -61,7 +61,7 @@ public class CreditCard {
 
     public CreditCard() {
         this.num = CreditCard.randomNum;
-        this.cardType = type.byIndex[(int)(Math.random() * 5)];
+        this.cardType = type.byIndex[(int)(Math.random() * 4)];
         this.limit = (int)(Math.random() * 1001);
         this.balance = - (int)(Math.random() * limit * 100) / 100.0;
         this.active = true;
