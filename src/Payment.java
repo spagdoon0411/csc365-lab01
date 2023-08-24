@@ -20,4 +20,16 @@ public class Payment {
     {
         return this.id;
     }
+
+    public String toCSV()
+    {
+        CSVTuple tuple = new CSVTuple();
+        tuple.append(String.valueOf(this.id));
+        tuple.append(String.valueOf(this.creditCard.getNum()));
+        tuple.append(String.valueOf(this.deltaBalance));
+        tuple.append(this.date.toString());
+        tuple.close();
+
+        return tuple.toString();
+    }
 }

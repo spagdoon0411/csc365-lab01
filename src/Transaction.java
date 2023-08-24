@@ -41,4 +41,17 @@ public class Transaction {
                 + "Price: " + this.deltaCustomerBalance + " \n";
 
     }
+
+    public String toCSV()
+    {
+        CSVTuple tuple = new CSVTuple();
+        tuple.append(String.valueOf(this.date));
+        tuple.append(String.valueOf(this.creditCard.getNum()));
+        tuple.append(String.valueOf(this.customer.getId()));
+        tuple.append(String.valueOf(this.vendor.getId()));
+        tuple.append(String.valueOf(this.deltaCustomerBalance));
+        tuple.close();
+
+        return tuple.toString();
+    }
 }

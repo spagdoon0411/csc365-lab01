@@ -5,9 +5,12 @@ import java.util.*;
 public class TransactionCollection {
     Map<CreditCard, TreeMap<Long, List<Transaction>>> cardLookup;
 
+    Set<Transaction> transactions;
+
     public TransactionCollection()
     {
         cardLookup = new HashMap<>();
+        transactions = new HashSet<>();
     }
 
     public void add(Transaction transaction)
@@ -41,5 +44,18 @@ public class TransactionCollection {
             newMap.put(transaction.getDate().getTime(), newList);
             cardLookup.put(transaction.getCreditCard(), newMap);
         }
+
+        transactions.add(transaction);
+    }
+
+    public String toCSV()
+    {
+        StringBuilder csvDump = new StringBuilder();
+        for(Transaction t : transactions)
+        {
+            csvDump.append(t.toCSV()).append("\n");
+        }
+
+        return csvDump.toString();
     }
 }
