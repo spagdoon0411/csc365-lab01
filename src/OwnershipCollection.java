@@ -27,7 +27,7 @@ public class OwnershipCollection {
         for (Customer customer : customers) {
 
             /* Randomly decide to pull between 1 and 3 cards from the card set */
-            int cardsToPull = new Random().nextInt(cardsMin, cardsMax);
+            int cardsToPull = new Random().nextInt(cardsMin, cardsMax + 1);
 
             /* Pull that many cards from the card set */
             for(int i = 0; i < cardsToPull; i++) {
@@ -35,7 +35,7 @@ public class OwnershipCollection {
                     break;
 
                 /* Pull a random card */
-                CreditCard cardAssignment = cardList.get(new Random().nextInt(cardList.size() - 1));
+                CreditCard cardAssignment = cardList.get(new Random().nextInt(cardList.size()));
 
                 /* Add it to the ownership collection */
                 this.add(new Ownership(customer, cardAssignment));

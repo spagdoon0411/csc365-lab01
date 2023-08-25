@@ -1,5 +1,7 @@
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public class Bank {
     static BigInteger one = new BigInteger("1");
@@ -132,7 +134,8 @@ public class Bank {
                     vendor,
                     deltaCustomerBalance
             );
-            transactions.add(t);
+
+            this.transactions.add(t);
         }
     }
 
@@ -175,14 +178,19 @@ public class Bank {
         System.out.println(findCustomerSsn(ssn));
     }
 
-    public void printCardByNum(String num)
+    public void printOwnersByNum(String num)
     {
         CreditCard card = this.cards.numLookup.get(num);
         System.out.println(card.toString());
         System.out.println("Owners:");
-        ownerships.owners.get(card)
-                .forEach(o -> System.out.println("\t" + o.getCustomer().getName()
-                + ", ID " + o.getCustomer().getId()));
+
+        List<Ownership> owners = ownerships.owners.get(card);
+        if(owners != null)
+            ownerships.owners.get(card)
+                    .forEach(o -> System.out.println("\t" + o.getCustomer().getName()
+                    + ", ID " + o.getCustomer().getId()));
+        else
+            System.out.println("\tNone");
         System.out.println();
     }
 

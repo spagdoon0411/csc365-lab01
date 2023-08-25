@@ -39,7 +39,7 @@ public class ActivitySimulation extends Bank {
     }
 
     /* Runs a simulation, creating 'iterations' transactions and payments. */
-    public void SimulateOn(int iterations)
+    public void simulateOn(int iterations)
     {
         ArrayList<Vendor> vendorList = new ArrayList<>(vendors.idLookup.values());
         ArrayList<CreditCard> cardList = new ArrayList<>(cards.numLookup.values());
@@ -50,11 +50,19 @@ public class ActivitySimulation extends Bank {
             CreditCard victim = cardList.get(new Random().nextInt(cardList.size()));
             Vendor assailant = vendorList.get(new Random().nextInt(vendorList.size()));
             List<Ownership> victimOwners = ownerships.owners.get(victim);
+            if(victimOwners == null)
+            {
+                iterations--;
+                continue;
+            }
             Customer victimOwner = victimOwners.get(new Random().nextInt(0, victimOwners.size())).getCustomer();
 
             /* Pick random payment (between balance and 0) and transaction (between 0 and balance available) */
-            double paymentDelta = -new Random().nextDouble(victim.getBalance(), 0);
-            double transactionDelta = -new Random().nextDouble(0.0, victim.getLimit() + victim.getBalance());
+            double paymentDelta = victim.getBalance() < 0 ? -new Random().nextDouble(victim.getBalance(), 0) : 0;
+            double transactionDelta = victim.getLimit() + victim.getBalance() > 0 ? -new Random().nextDouble(0.0, victim.getLimit() + victim.getBalance()) : 0;
+
+            paymentDelta = ((int)(paymentDelta * 100))/100.0;
+            transactionDelta = ((int)(transactionDelta * 100))/100.0;
 
             newPayment(victim.getNum().toString(),
                     victimOwner.getId(),

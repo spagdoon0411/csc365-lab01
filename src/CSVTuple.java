@@ -1,5 +1,11 @@
 public class CSVTuple {
+
     private String tuple = "";
+
+    public CSVTuple()
+    {
+        tuple += '(';
+    }
     public String toString()
     {
         return tuple;
@@ -12,7 +18,7 @@ public class CSVTuple {
 
     public void close()
     {
-        /* Trim the last unnecessary comma */
-        tuple = tuple.substring(0, tuple.length() - 2);
+        /* Trim the last unnecessary comma and add a final )*/
+        tuple = tuple.substring(0, tuple.length() - 1) + ")";
     }
 }

@@ -1,3 +1,4 @@
+import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TreeMap;
@@ -93,6 +94,11 @@ public class Main {
                 2,
                 1,
                 3);
+
+        sim.simulateOn(2000);
+
+        System.out.println(sim.transactions.toCSV(false));
+
 
     }
 }

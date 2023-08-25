@@ -15,6 +15,8 @@ public class TransactionCollection {
 
     public void add(Transaction transaction)
     {
+        transactions.add(transaction);
+
         /* Case 1: card already exists */
         if(cardLookup.containsKey(transaction.getCreditCard()))
         {
@@ -44,11 +46,9 @@ public class TransactionCollection {
             newMap.put(transaction.getDate().getTime(), newList);
             cardLookup.put(transaction.getCreditCard(), newMap);
         }
-
-        transactions.add(transaction);
     }
 
-    public String toCSV()
+    public String toCSV(boolean cheat)
     {
         StringBuilder csvDump = new StringBuilder();
         for(Transaction t : transactions)
